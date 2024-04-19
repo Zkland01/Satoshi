@@ -1,0 +1,821 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css"
+        integrity="sha512-MV7K8+y+gLIBoVD59lQIYicR65iaqukzvf/nwasF0nqhPay5w/9lJmVM2hMDcnK1OnMGCdVK+iQrJ7lzPJQd1w=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="output.css">
+    <style> @import url('https://css.gg/chevron-right-o.css');
+    
+    </style>
+    <link href="https://fonts.googleapis.com/css?family=Pixelade" rel="stylesheet">
+
+    <style>
+
+        
+        
+    .hiddeen {
+    display: none !important;}
+     /* Updated styles for the buttons */
+     /* styles.css */
+     .voyage-buttons {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+            justify-content: center;
+            margin-top: 8px;
+        }
+
+    
+
+        @media only screen and (min-width: 600px) {
+            /* Two buttons per row on screens larger than 600px */
+        }
+         /* Style for the modal */
+         .modal {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    height: 70%;
+    width: 50%;
+    max-width: 400px;
+    display: none;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+    z-index: 1000; /* Set a high z-index for the modal content */
+    color: black;
+    font-family: 'NovaFlat-Regular', cursive;
+    text-align: center;
+    background-color: transparent; /* Make the background color transparent */
+}
+
+.modal::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: url('images/ne.jpg');
+    background-size: cover;
+    opacity: 0.4; /* Adjust the opacity value as needed */
+    border-radius: 8px;
+    z-index: -1; /* Set a lower z-index for the pseudo-element */
+}
+
+/* Rest of your modal styling here */
+
+
+
+/* video modal css */
+.video-modal {
+    /* background-image: url('images/ne.jpg'); 
+    background-size: cover; */
+    display: none;
+    position: fixed;
+    height: 70%;
+    color: white;
+    
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    padding: 20px;
+    /* background-color: #fff; */
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+    z-index: 1000;
+    color: black;
+    max-width: 500px;
+    width: 100%;
+    text-align: center;
+    box-sizing: border-box;
+}
+
+
+/* CSS */
+.voyage-button {
+  background-color: #fbeee0;
+  border: 2px solid #422800;
+  border-radius: 30px;
+  box-shadow: #422800 4px 4px 0 0;
+  color: #422800;
+  cursor: pointer;
+  display: inline-block;
+  font-weight: 600;
+
+  font-size: 18px;
+  padding: 0 18px;
+  line-height: 50px;
+  text-align: center;
+  text-decoration: none;
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: manipulation;
+}
+
+.voyage-button:hover {
+  background-color: #fff;
+}
+
+.voyage-button:active {
+  box-shadow: #422800 2px 2px 0 0;
+  transform: translate(2px, 2px);
+}
+
+@media (min-width: 768px) {
+  .voyage-button {
+    min-width: 120px;
+    padding: 0 25px;
+  }
+}
+
+        /* Style for the close button in the modal */
+        .close-btn {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            cursor: pointer;
+        }
+
+      
+        #loading-screen__container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background: #111;
+    z-index: 1001;
+    opacity: 1;
+}
+    @font-face {
+  font-family: 'Mergic';
+  src: url('fonts/Mergic.ttf.eot');
+  src: url('fonts/Mergic.ttf.eot?#iefix') format('embedded-opentype'),
+       url('fonts/Mergic.ttf.woff') format('woff'),
+       url('fonts/Mergic.ttf.svg#Mergic') format('svg'),
+       url('fonts/Mergic.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+
+
+}
+#playButton{
+    left: 93%; 
+    top: 82%;
+} 
+#closeButton{
+    position: absolute ; bottom: 70%; left: 93%; width: 60px;
+}
+#loading-screen__enter-bar, #loading-screen__enter-button {
+    animation-name: workimn;
+    position: absolute;
+    left: 50%;
+    -webkit-transform: translate(-50%,-50%);
+    transform: translate(-50%,-50%);
+}
+
+#loading-screen__enter-bar {
+    top: calc(50% + 10vh);
+    height: 0.2vh;
+    width: 90vh;
+    background-image: linear-gradient(90deg,transparent,#69e3f2,transparent);
+    -webkit-animation-name: barOpenHorizontal;
+    animation-name: barOpenHorizontal;
+    -webkit-animation-iteration-count: 1;
+    animation-iteration-count: 1;
+    -webkit-animation-timing-function: ease-in-out;
+    animation-timing-function: ease-in-out;
+    -webkit-animation-duration: 1.5s;
+    animation-duration: 1.5s;
+}
+#loading-screen__enter-button>p {
+    color: #fff;
+    font-size: 3vh;
+}
+#loading-screen__enter-button {
+    top: calc(50% + 16vh);
+    height: 30px;
+    width: 250px;
+    text-align: center;
+    opacity: 1;
+    -webkit-animation-name: slideButtonDown;
+    animation-name: slideButtonDown;
+    -webkit-animation-iteration-count: 1;
+    animation-iteration-count: 1;
+    -webkit-animation-timing-function: ease-in-out;
+    animation-timing-function: ease-in-out;
+    -webkit-animation-duration: 2s;
+    animation-duration: 1814.758878518607ms;
+    cursor: pointer;
+    white-space: nowrap;
+}
+.loader {
+    border: 8px solid #f3f3f3;
+    border-top: 8px solid #3498db;
+    border-radius: 50%;
+    width: 50px;
+    display: none;
+    height: 50px;
+    animation: spin 3s linear infinite;
+    margin: 20px auto;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+@keyframes slideButtonDown{
+    0% {
+    opacity: 0;
+    top: calc(50% + 12vh);
+}
+
+100% {
+    opacity: 1;
+    top: calc(50% + 16vh);
+}
+
+
+}@keyframes barOpenHorizontal{
+    0% {
+    width: 0;
+}
+100% {
+    width: 90vh;
+}
+}
+@media  (max-width: 768px) {
+   
+    #playButton{
+        left: 83%;
+        top: 85%;
+    }
+    .voyage-buttons{margin-top: 27%;}
+    #closeButton{
+    bottom: 93%;
+    left: 85%;
+   
+    }
+}
+
+  </style>
+  <style>
+  @font-face {
+  font-family: 'NovaFlat-Regular';
+  src: url('fonts/NovaFlat-Regular.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+  </style>
+  <style>
+  @font-face {
+  font-family: 'DISCOVERY';
+  src: url('fonts/DISCOVERY.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+.w{
+  margin-top: 32px;
+}
+.text-gradient {
+  background: linear-gradient(45deg, #11d1cb, #e714d2);
+  -webkit-background-clip: text;
+  color: transparent;
+}
+#backdrop {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(0, 0, 0, 0.5); /* Adjust the alpha value for transparency */
+        backdrop-filter: blur(5px); /* Adjust the blur value as needed */
+        display: none;
+        z-index: 999;} /* Make sure the backdrop is behind the modal but above other elements */
+  </style>
+  <style>@import 'anim.css';</style>
+
+    
+ <link rel="icon" href="images/fav/favicon.ico" type="image/x-icon">
+    <title></title>
+  
+
+    <style>
+        @font-face {
+            font-family: 'Viner Hand ITC';
+            src: url('fonts/VINERITC.TTF') format('truetype'); /* TTF font format */
+            /* Add more font formats if needed for better browser support */
+        }
+    </style>
+</head>
+
+<body class="text-white font-NovaFlat-Regular" style="
+font-family: 'Viner Hand ITC', cursive;
+background: linear-gradient(82deg, #0dc5a5, #09bcf867, #575851, #0dc5a5, #7f0dc5); 
+background-size: 1000% 1000%; 
+animation: AnimationName 13s ease infinite;">
+
+<style>
+    @keyframes AnimationName {
+        0% { background-position: 0% 50%; }
+        50% { background-position: 100% 50%; }
+        100% { background-position: 0% 50%; }
+    }
+</style>
+
+
+    <div id="loading-screen__container" >
+        <div id="loader" style="display: none;">
+            <img src="./images/love.gif" alt="" style="width: 100px; height: 100px;">
+        </div>
+        <div id="big">
+        <div style="    width: 398px;
+        height: 402px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    ">
+        <img id="loading-screen__logo" src="./images/goat.png" style="height: 30%; width: 24%; animation: bounce 2s infinite; margin-bottom: 55px;"/>
+    </div>
+        <audio id="loading-screen__music" autoplay >
+            <source src="./FreeSuspenseMusic•Uppbeat.mpeg" type="audio/mp3">
+            Your browser does not support the audio element.
+        </audio>     <div id="loading-screen__enter-bar"></div>
+        <button style="padding-bottom: 100px;" id="loading-screen__enter-button" onclick="playVideoAndShowPage()" id="voyageA" class="voyage-button">Lets Celebrate  <br> the Bitcoin Halving</button>
+    </div>
+</div>
+    <style>
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% {
+                transform: translateY(0);
+            }
+            40% {
+                transform: translateY(-20px);
+            }
+            60% {
+                transform: translateY(-10px);
+            }
+        }
+    </style>
+    
+    <!--Navbar Start-->
+    <header class=" mx-auto md:h-[100vh] relative">
+
+        
+<nav class="bg-[#111] fixed top-0 left-0 right-0 z-50 p-6 border-b-2 border-[#fffff]">
+
+            <div class="flex items-center  justify-between flex-wrap ">
+                <!-- LOGO -->
+                <a href="" class="flex items-center flex-shrink-0 text-white mr-6">
+                    <img src="images/goat.png" class="w-10 h-10 rounded-full">
+                    <span class="ml-1 font-bold uppercase text-gradient">Satoshi's halving Supper</span>
+                </a>
+
+
+                <div class="block md:hidden">
+                    <button
+                        class=" toggle flex items-center px-3 py-2 border rounded hover:text-white hover:border-white">
+                        <svg class="fill-current h-3 w-3" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                            <title>Menu</title>
+                            <path d="M0 3h20v2H0V3zm0 6h20v2H0V9zm0 6h20v2H0v-2z" />
+                        </svg>
+                    </button>
+                </div>
+
+                <div
+                    class="r hidden rounded mt-5 md:mt-0 w-full text-center bg-[#5901b1] md:bg-transparent md:flex md:w-[50%] md:items-center ">
+                    <a href="#home"
+                        class="block flex-grow p-3 md:p-0 w-full text-black md:text-white mt-4 md:mt-0 md:inline-block md:mr-4 md:hover:text-yellow-300">
+                        Home
+                    </a>
+                    <!-- <a href="#nft"
+                        class="block p-3 w-full text-black md:text-white mt-4 md:mt-0 md:inline-block md:mr-4 md:p-0 flex-grow md:hover:text-yellow-300">
+
+                    </a> -->
+                    <a href="#about"
+                    class="block p-3 w-full text-white md:text-white mt-4 md:mt-0 md:inline-block md:mr-4 md:p-0 flex-grow md:hover:text-yellow-300">
+                    About
+                </a>
+        
+
+                    <a href="#voyageA"
+                        class="block p-3 w-full text-black md:text-white mt-4 md:mt-0 md:inline-block md:mr-4 md:p-0 md:hover:text-yellow-300 flex-grow">
+                        Road map
+                    </a>
+
+                    <a href="#footer"
+                        class="block p-3 w-full text-black md:text-white mt-4 md:mt-0 md:inline-block md:mr-4 md:p-0 md:hover:text-yellow-300 flex-grow">
+                        mail us
+                    </a>
+                 
+                      
+                    
+                </div>
+
+
+            </div>
+        </nav>
+       
+        <!--Navbar End-->
+        <button id="voyageA" class="voyage-button fixed bottom-4 right-4 p-4 bg-blue-500 text-white rounded-full" style="padding-top: 5px; padding-bottom: 5px;" onclick="openVideoModal()">
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" class="h-6 " style="width: 89px;">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 3l14 9L5 21V3z"/>
+            </svg>
+        </button>
+        
+    <video id="videoPlayer" class="w-full hidden h-full" controls>
+        <!-- Add your video source here -->
+        <source src="./VID.mp4" type="video/mp4">
+        Your browser does not support the video tag.
+    </video>
+    <button id="closeButton" class=" hidden absolute left-52 bottom-52 w-70 p-4 bg-red-500 text-white rounded-full" style="">
+        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" class="h-6 w-40">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+        </svg>
+    </button>  
+        <!--Home Section Start-->
+        <section class="mt-[100px] container p-6 mx-auto h-full max-h-full flex justify-center items-center text-justify text-4xl"
+            id="home">
+            <div class="flex flex-col-reverse md:flex-row flex-wrap items-center justify-between" data-aos="slide-down">
+                <div class=" p-[1em] md:p-[0] mt-[150px] md:mt-0 text-center md:text-start md:w-[50%]">
+
+                   
+                    <h1 class=" animate-bounce text-[30px] xl:text-[100px] text-yellow-200 mb-[40px] font-DISCOVERY text-gradient"></h1>
+                  
+
+                    <div class="text-[20px] xl:text-[30px]" id="content-container">
+                        <div class="voyage-buttons">
+                            <button class="voyage-button" id="voyageA"  role="button"onclick="openVideoModal()">click to pump it Up</button> 
+                        </div>
+                    <div style="font-family: 'NovaFlat-Regular', cursive;" id="content-1" class="mb-8"> <span class="font-bold text-[28px]">Buckle up, Degens!  –</span>Today, as the crypto world celebrates the halving event<br>we are excited to introduce Satoshi's Halving Supper, a memecoin on the Solana blockchain that commemorates this historic occasion. </div>
+                    <!-- <div id="content-2" class="hiddeen mb-8"> <span class="font-bold text-[28px]">Join our team –</span> we're looking for talented developers, designers, and project leads to help build the future of ZKlands! Looking for a new adventure? Join the ZKlands community and connect with like-minded explorers! <br>Take the first step towards financial freedom – earn rewards and prizes while exploring the world of ZKlands!"
+                    </div>
+                    <div id="content-3" class="hiddeen mb-8"> <span class="font-bold text-[28px]">Secure, fast, and reliable –</span>  ZKlands NFTs are built on the ZKSync blockchain for maximum security and efficiency!Unleash your creativity – customize your NFTs with unique designs and unlock new possibilities in the game!<br>The future of NFTs is here – join the ZKlands revolution and be a part of the next big thing in the crypto world!"
+                    </div> -->
+                   <h4></h4>
+                     <h4 class="text-yellow-200 text-xs md:text-lg">
+                        <span class="asa hover:underline hover:ease-in "></span>
+                        <i class=" " id="copy" aria-hidden="true"></i>
+                    </h4>
+                    <!-- <a href="#" target="_blank" rel="noopener noreferrer" class="bg-[#5b11d1] hover:bg-[#5901b1] text-white mt-9 font-bold py-2 px-4 rounded-full">
+                      Buy $Satoshi's halving Supperhere 
+                                            
+                      </a> -->
+                                <!-- Buttons for Voyages -->
+          
+                    <!-- <p class="text-[15px]"><i class="fa fa-check p-2 ml-2 bg-yellow-400 rounded-full"
+                            aria-hidden="true"></i></p>    -->
+                </div>
+                </div>
+                        <!-- Buttons for Voyages -->
+                        <div id="backdrop"></div>
+
+      
+                        <div id="voyageModal" class="modal">
+                            <span class="close-btn" onclick="closeModal()">&times;</span>
+                            <div>
+                                <div>
+                                    <h2 id="modalTitle" style="color: white; opacity: 1;" class="text-4xl text-white font-bold mb-4"></h2>
+                                    <p id="modalInfo" class="text-3xl text-white"></p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div id="voyageVideoModal" class="modal video-modal" style="background-image: none; background-color: rgba(255, 255, 255, 0); border: none;">
+                            <span class="close-btn" onclick="closeVideoModal()">&times;</span>
+                            <!-- <h2 id="modalTitle" class="text-4xl text-white font-bold mb-4">hsdhsdjhsd</h2>
+                            <p id="modalInfo" class="text-3xl text-white">hhsdjhsd</p> -->
+                            <video width="500px" height="70%" loop id="voyageVideo">
+                                <source src="VID.mp4" type="video/mp4">
+                                Your browser does not support the video tag.
+                            </video>
+                        </div>
+                    
+                <div class="relative m-4" data-aos="fade-in" data-aos-delay="100">
+                    <div
+                        class="bg-[#475ac4] animate-pulse blur-3xl w-[300px] h-[300px] lg:w-300px] lg:h-[500px] rounded-full">
+                    </div>
+                    <img src="images/sloa.jpg"
+                        class="transform transition-transform duration-500 ease-in translate-x-4  z-10 absolute top-0 left-0 w-[400px] h-[400px] md:w-full md:h-full animate-pulse" alt="">
+                
+                    </div>
+                
+            </div>
+        </section>
+    </header>
+<div class="border-t-2 border-[#5901b1] mt-[100px]"></div>
+
+<section class="bg-[#381e6e] mb-20 mb-40-lg">
+    
+<div class="container mx-auto py-24 px-6 md:px-0 text-center">
+  <h1 class="text-5xl font-mergic font-bold leading-tight mb-8 text-gradient"></h1>
+  <div class="voyage-buttons">
+    <button class="voyage-button" id="voyageA"  role="button"onclick="openModal('Voyage A')">Plan A</button>
+    <button class="voyage-button" id="voyageB" onclick="openModal('Voyage B')">Plan b</button>
+    <button class="voyage-button" id="voyageC" onclick="openModal('Voyage C')">Plan c</button>
+    <button class="voyage-button" id="voyageD" onclick="openModal('Voyage D')">Plan d</button>
+    <button class="voyage-button" id="voyageE" onclick="openModal('Voyage E')">Plan e</button>
+    <button class="voyage-button" id="voyageF" onclick="openModal('Voyage F')">Plan F</button>
+    <button class="voyage-button" id="voyageG" onclick="openModal('Voyage G')">Plan G</button>
+</div>   
+<!--  <a href="#" class=" text-white px-6 py-3 rounded-full bg-[#5b11d1] hover:bg-[#5901b1] transition-colors duration-300 inline-block mb-20" target="_blank">Hire me</a> -->
+
+  
+ <!-- <a href="#" class="bg-[#5b11d1] hover:bg-[#5901b1] px-6 py-3 rounded-full transition-colors duration-300 inline-block mt-20" target="_blank">Register to get early access</a> -->
+</div>
+
+  <div class="container mx-auto" >
+       
+        <div class="flex justify-center">
+            <a href="http://www.x.com/goatofsolana" class="hover:animate-bounce" target="_blank">
+                <img class=" mr-5 rounded-full w-[50px] h-[50px] md:w-[100px] md:h-[100px]"
+                    src="images/twitter_logo.png">
+            </a>
+
+            <a href="https://t.me/Satoshi's halving Supperdedemonkey" class="hover:animate-bounce">
+                <img class="mr-5 rounded-full w-[50px] h-[50px] md:w-[100px] md:h-[100px]" src="images/telegram.png">
+            </a>
+
+          
+            
+             <!-- <a href="" class="hover:animate-bounce">
+                <img class="rounded-full w-[50px] h-[50px] md:w-[100px] md:h-[100px]" src="images/telegram.png">
+            </a> -->
+        </div>
+    </div>
+    <div class="border-t-2 border-[#fff] mt-[100px]"></div>
+    </section>
+
+
+    <div id="about"></div>
+<!-- <div class="border-t-2 border-[#fff]"> -->
+    <!-- Your content goes here -->
+  </div>
+
+  
+
+    <!--Home Section End-->
+
+    <!-- ABOUT  US -->
+    
+    <!--  -->
+
+  <div class="container mx-auto text-center mt-[100px]">
+        <a href="mailto:info@solanagoat.xyz">
+            <span
+                class="p-4 mb-8 inline-block w-[300px]  bg-[#5901b1] hover:bg-[#5b11d1] rounded-xl mx-auto uppercase">mail
+                us</span>
+        </a>
+
+    </div>
+    
+     
+
+        <!-- Video Modal -->
+  
+  <!-- Footer Section -->
+  <footer class="bg-gray-900 text-white py-8" id="footer">
+    <div class="container mx-auto px-6 flex justify-between">
+      <p>&copy; 2023 Satoshi's halving Supper. All rights reserved.</p>
+      <ul class="flex">
+        <li class="mr-6"><a href="#" class="hover:text-gray-400"></a></li>
+        <li><a href="#" class="hover:text-gray-400"></a></li>
+      </ul>
+    </div>
+  </footer>
+ 
+    <script defer>
+       const menu = document.querySelector(".r");
+        const btn = document.querySelector(".toggle");
+
+
+        const show = false;
+
+        btn.addEventListener('click', () => {
+            menu.classList.toggle('hidden');
+        })
+
+        document.addEventListener('scroll', () => {
+            if (!menu.classList.contains('hidden')) {
+                menu.classList.add('hidden')
+            }
+        })
+       
+
+        document.querySelector("#copy").addEventListener("click", () => {
+            const copy = navigator.clipboard.writeText(document.querySelector(".asa").innerHTML);
+
+            document.querySelector('#copy').classList.remove('fa-copy');
+            document.querySelector('#copy').classList.add('fa-check');
+        })
+
+
+
+    // const content1 = document.getElementById('content-1');
+    // const content2 = document.getElementById('content-2');
+    // const content3 = document.getElementById('content-3');
+
+    // const contentArray = [content1, content2, content3];
+    // let currentIndex = 0;
+
+    // function rotateContent() {
+    //   contentArray[currentIndex].classList.add('hiddeen');
+    //   currentIndex = (currentIndex + 1) % contentArray.length;
+    //   contentArray[currentIndex].classList.remove('hiddeen');
+    // }
+
+    // setInterval(rotateContent, 11000);
+  
+
+        // Function to close the modal
+    
+    const playButton = document.getElementById('playButton');
+        const videoPlayer = document.getElementById('videoPlayer');
+        const closeButton = document.getElementById('closeButton');
+        const loadingScreenMusic = document.getElementById('loading-screen__music');
+
+        playButton.addEventListener('click', () => {
+            // Request fullscreen
+           
+
+            // Show the video by removing the 'hidden' attribute
+            videoPlayer.style.display = 'block';
+
+            // Play the video
+            videoPlayer.play();
+            loadingScreenMusic.pause();
+            // Show the close button
+            playButton.style.display='none'
+            closeButton.style.display = 'block';
+        });
+
+        closeButton.addEventListener('click', () => {
+            // Exit fullscreen
+            document.exitFullscreen();
+
+            // Hide the video
+            videoPlayer.style.display = 'none';
+playButton.style.display='block';
+            // Pause the video
+            videoPlayer.pause();
+
+            // Hide the close button
+            closeButton.style.display = 'none';
+        });
+
+ 
+</script>
+<script>
+    // Function to open the modal with voyage information
+    function openModal(voyage) {
+        const modal = document.getElementById('voyageModal');
+        const backdrop = document.getElementById('backdrop');
+        const titleElement = document.getElementById('modalTitle');
+        const infoElement = document.getElementById('modalInfo');
+
+        const voyageData = getVoyageData(voyage);
+
+        if (titleElement && infoElement && voyageData) {
+            // Set the title and information based on the selected voyage
+            titleElement.innerHTML = voyageData.title;
+            infoElement.innerHTML = voyageData.info;
+
+            modal.style.display = 'block';
+            backdrop.style.display = 'block';
+        } else {
+            console.error('Title, info element, or voyage data not found.');
+        }
+    }
+
+    function openVideoModal() {
+        const modal = document.getElementById('voyageVideoModal');
+        const backdrop = document.getElementById('backdrop');
+
+        modal.style.display = 'block';
+        backdrop.style.display = 'block';
+
+        // Get the video element by its ID 
+        var video = document.getElementById('voyageVideo');
+        var audio = document.getElementById('loading-screen__music');
+
+        // Play the video
+        video.play();
+        audio.pause();
+    }
+
+    // Function to close the modal
+    function closeModal() {
+        const modal = document.getElementById('voyageModal');
+        const backdrop = document.getElementById('backdrop');
+
+        modal.style.display = 'none';
+        backdrop.style.display = 'none';
+    }
+
+    function closeVideoModal() {
+        const modal = document.getElementById('voyageVideoModal');
+        const backdrop = document.getElementById('backdrop');
+
+        modal.style.display = 'none';
+        backdrop.style.display = 'none';
+
+        var video = document.getElementById('voyageVideo');
+        var audio = document.getElementById('loading-screen__music');
+
+        // Play the video
+        video.pause();
+        audio.play();
+    }
+
+    // Function to get voyage data based on the selected voyage
+    function getVoyageData(voyage) {
+        switch (voyage) {
+            case 'Voyage A':
+                return { title: 'Voyage A;', info: "<b style='color: #0dc5a5; font-size: 35px;'>In The beginning</b> <br><br> <ul style='font-size: 20px;'><li>1. Satoshi's halving Supper's team of 500</li><br><li>2. Sit on a round table</li></ul>" };
+            case 'Voyage B':
+                return { title: 'Voyage B;', info: "<b style='color: #0dc5a5; font-size: 35px;'>For we set sail</b> <br><br> <ul style='font-size: 20px;'><li>1. 200 Satoshi's halving Supperholders</li><br><li>2. 200k mcap</li></ul> <br><br> <b style='color: #0dc5a5; font-size: 35px;'>REWARD:</b> <br> <span style='font-size: 20px;'>thanks to top holders who never sold or betrayed Satoshi's halving Supper</span>" };
+            // Add cases for other voyages
+            case 'Voyage C':
+                return {title:'Voyage C;' , info :"<b style='color: #0dc5a5; font-size: 35px;'>Weathering the storm</b> <br><br> <ul style='font-size: 20px;'><li>1. 700 Satoshi's halving Supperholders</li><br><li>2. 500k mcap</li><br><li>3. X raid Rewards Random community Airdrop</li></ul>"}
+          
+            case 'Voyage D':
+                return {title:'Voyage D' , info :"<b style='color: #0dc5a5; font-size: 35px;'>Treasure hunting</b> <br><br> <ul style='font-size: 20px;'><li>1. 1k holders</li><br><li>2. 1m mcap</li></ul> <br><br> <b style='color: #0dc5a5; font-size: 35px;'>REWARD:</b> <br> <span style='font-size: 20px;'>Satoshi's halving Supper marketing</span>"}
+
+            case 'Voyage Video':
+                return {title:'Video' , info :"D. Treasure hunting 1. 1k+ holders2. 1m mcapReward."}
+            default:
+                return null;
+        }
+    }
+    
+    function playVideoAndShowPage() {
+        const big =document.getElementById('big')
+    const loadingScreenMusic = document.getElementById('loading-screen__music');
+    loadingScreenMusic.play();
+ 
+
+    // Display the loader
+    const loader = document.getElementById('loader');
+    if (loader && big) {
+        loader.style.display = 'block';
+        big.style.display='none';
+
+    }
+
+    // Simulate loading time (replace this with your actual loading logic)
+    setTimeout(() => {
+        // Hide the loader
+        if (loader) {
+            loader.style.display = 'none';
+        }
+
+        // Display the webpage content
+        const loadingScreen = document.getElementById('loading-screen__container');
+        if (loadingScreen) {
+            loadingScreen.style.display = 'none';
+        }
+
+        // You can show/hide elements, load more content, etc.
+        // Example: document.getElementById('home').style.display = 'block';
+    }, 5000); // Simulate 5 seconds loading time
+}
+
+</script>
+
+<script>
+    // Get the video element
+    var video = document.getElementById('voyageVideo');
+
+    // Check if the browser supports the Fullscreen API
+    if (video.requestFullscreen) {
+        video.requestFullscreen();
+    } else if (video.mozRequestFullScreen) { // Firefox
+        video.mozRequestFullScreen();
+    } else if (video.webkitRequestFullscreen) { // Chrome, Safari and Opera
+        video.webkitRequestFullscreen();
+    } else if (video.msRequestFullscreen) { // IE/Edge
+        video.msRequestFullscreen();
+    }
+</script>
+
+
+  
+</body>
+
+</html>
